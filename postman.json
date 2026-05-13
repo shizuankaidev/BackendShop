@@ -1,0 +1,751 @@
+{
+  "info": {
+    "_postman_id": "658ece0f-3ff4-427a-9ea1-f148a780c769",
+    "name": "ShopCloats",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28921501"
+  },
+  "item": [
+    {
+      "name": "login",
+      "item": [
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"admin@email.com\",\r\n  \"password\": \"admin\"\r\n} \r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Empresa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"shizu@email.com\",\r\n  \"password\": \"shizu1\"\r\n} \r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MDA0LCJpYXQiOjE3NzgyNzA0MDQsImp0aSI6IjJhYTM3OTY0MTc1YjRkNjVhMGFkMDcxODYyMzk4NGMxIiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.cTtUh583t3USOOeVvG04khf9BE7Gn4xk9dY0z4_C1C4",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"shizu\",\r\n  \"email\": \"shizu@email.com\",\r\n  \"password\": \"shizu1\",\r\n  \"user_type\": \"EMPRESA\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "company",
+      "item": [
+        {
+          "name": "Owner",
+          "item": [
+            {
+              "name": "Set Owner",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MDA0LCJpYXQiOjE3NzgyNzA0MDQsImp0aSI6IjJhYTM3OTY0MTc1YjRkNjVhMGFkMDcxODYyMzk4NGMxIiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.cTtUh583t3USOOeVvG04khf9BE7Gn4xk9dY0z4_C1C4",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"user_id\": 2\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/company/1/owner/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "company",
+                    "1",
+                    "owner",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Revoke Owner",
+              "request": {
+                "method": "GET",
+                "header": []
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Get",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY3MDgyLCJpYXQiOjE3NzgyNjM0ODIsImp0aSI6IjQ4NzQ3ZjllYTkzNjQ5OWQ5MWU4NGVkYzZkNmVhMzM2IiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.y0gm7NhRBuVWvc-0YBqDb8y5SOH7AgroYqu_S9i076I",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Shizu Empresa\",\r\n  \"slug\": \"minha-empresa\",\r\n  \"cnpj\": \"12.345.678/0001-90\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/company/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "company",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MDA0LCJpYXQiOjE3NzgyNzA0MDQsImp0aSI6IjJhYTM3OTY0MTc1YjRkNjVhMGFkMDcxODYyMzk4NGMxIiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.cTtUh583t3USOOeVvG04khf9BE7Gn4xk9dY0z4_C1C4",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Shizu Empresa\",\r\n  \"slug\": \"minha-empresa\",\r\n  \"cnpj\": \"12.345.678/0001-90\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/company/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "company",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Put",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY3MDgyLCJpYXQiOjE3NzgyNjM0ODIsImp0aSI6IjQ4NzQ3ZjllYTkzNjQ5OWQ5MWU4NGVkYzZkNmVhMzM2IiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.y0gm7NhRBuVWvc-0YBqDb8y5SOH7AgroYqu_S9i076I",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Shizu Empresa\",\r\n  \"slug\": \"my-empresa\",\r\n  \"cnpj\": \"12.345.678/0001-90\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/company/2/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "company",
+                "2",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY3MDgyLCJpYXQiOjE3NzgyNjM0ODIsImp0aSI6IjQ4NzQ3ZjllYTkzNjQ5OWQ5MWU4NGVkYzZkNmVhMzM2IiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.y0gm7NhRBuVWvc-0YBqDb8y5SOH7AgroYqu_S9i076I",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Shizu Empresa\",\r\n  \"slug\": \"minha-empresa\",\r\n  \"cnpj\": \"12.345.678/0001-90\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/company/1/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "company",
+                "1",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "Get",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MTQ2LCJpYXQiOjE3NzgyNzA1NDYsImp0aSI6IjcxZDY4M2VjMTI5MjQ4YjRhZDc3ZjQ2N2Y2YzE2ZGQ4IiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.DeTB8Lnwkr1evq4SwbHn4svnzK9Qq-tlmkSPxVwRT5c",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/categories/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "categories",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "post",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MTQ2LCJpYXQiOjE3NzgyNzA1NDYsImp0aSI6IjcxZDY4M2VjMTI5MjQ4YjRhZDc3ZjQ2N2Y2YzE2ZGQ4IiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.DeTB8Lnwkr1evq4SwbHn4svnzK9Qq-tlmkSPxVwRT5c",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Camisetas\",\r\n  \"description\": \"Categoria de camisetas streetwear\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/categories/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "categories",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Put",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4Mjc0MTQ2LCJpYXQiOjE3NzgyNzA1NDYsImp0aSI6IjcxZDY4M2VjMTI5MjQ4YjRhZDc3ZjQ2N2Y2YzE2ZGQ4IiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.DeTB8Lnwkr1evq4SwbHn4svnzK9Qq-tlmkSPxVwRT5c",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Camisetas\",\r\n  \"description\": \"Categoria de camisetas streetwear\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/categories/1/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "categories",
+                    "1",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY5MjIyLCJpYXQiOjE3NzgyNjU2MjIsImp0aSI6IjI3ZWJjYjM0ZmU0MTQxODFhZWNmMWI4OWMyN2RmZTIyIiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.cuEdwp8OJGxkgAU-g3EQMlsXIs8wF-Zx6g-QTOxFmjI",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/categories/1/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "categories",
+                    "1",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "products",
+          "item": [
+            {
+              "name": "Get",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MzE5MDY1LCJpYXQiOjE3NzgyODMwNjUsImp0aSI6IjQwMjc4NGM4MWY4OTRmMjhhMDU4Y2FiN2Y4MGZhZjU1IiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.dHtTqsIf1XSjhJaaMGCTrH_s1g1b0iaElLRDn_-jNZg",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/products/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "products",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Post",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MzE5MDY1LCJpYXQiOjE3NzgyODMwNjUsImp0aSI6IjQwMjc4NGM4MWY4OTRmMjhhMDU4Y2FiN2Y4MGZhZjU1IiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.dHtTqsIf1XSjhJaaMGCTrH_s1g1b0iaElLRDn_-jNZg",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Camiseta Oversized Black",
+                      "type": "text",
+                      "uuid": "c2e2e367-df53-4d6e-8d3f-e989d7fa6009"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Camiseta premium oversized algodão",
+                      "type": "text",
+                      "uuid": "97ae2dec-d5cc-4da4-9594-ed1a1b89da48"
+                    },
+                    {
+                      "key": "short_description",
+                      "value": "Oversized premium",
+                      "type": "text",
+                      "uuid": "ad4a33fc-6fbb-4168-9598-9ef2a73b1fcf"
+                    },
+                    {
+                      "key": "category",
+                      "value": "1",
+                      "type": "text",
+                      "uuid": "304b91e2-f2c2-4367-80d4-efe6fd0949e5"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "CAM-001",
+                      "type": "text",
+                      "uuid": "12f63c04-7950-4179-8fdb-e05debdb88b9"
+                    },
+                    {
+                      "key": "barcode",
+                      "value": "789123456",
+                      "type": "text",
+                      "uuid": "a0621f28-72a7-4ce6-ab2e-733a5c478fc5"
+                    },
+                    {
+                      "key": "cost_price",
+                      "value": "49.90",
+                      "type": "text",
+                      "uuid": "fba8d069-566a-40ba-a577-fa4a91ce621a"
+                    },
+                    {
+                      "key": "base_price",
+                      "value": "129.90",
+                      "type": "text",
+                      "uuid": "4fcef144-556b-424f-8388-86411b46090f"
+                    },
+                    {
+                      "key": "sale_price",
+                      "value": "99.90",
+                      "type": "text",
+                      "uuid": "4802379a-743a-46c5-9a17-0a7e5305efae"
+                    },
+                    {
+                      "key": "stock",
+                      "value": "30",
+                      "type": "text",
+                      "uuid": "6c173d4e-2685-409e-85e0-1d002358da93"
+                    },
+                    {
+                      "key": "min_stock",
+                      "value": "5",
+                      "type": "text",
+                      "uuid": "667591ec-cf50-42f2-9969-d9e306521596"
+                    },
+                    {
+                      "key": "featured",
+                      "value": "true",
+                      "type": "text",
+                      "uuid": "bdb0ed05-4e9c-4e17-a352-eb7f959c7c89"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE",
+                      "type": "text",
+                      "uuid": "34381ac9-580e-44e8-813b-381673926d5c"
+                    },
+                    {
+                      "key": "Imagens",
+                      "type": "file",
+                      "uuid": "6d8c2c27-d930-428e-9e77-b2ad794f6de2",
+                      "src": "postman-cloud:///1f14b380-afd7-42f0-9bc5-05ffc51551ee"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/products/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "products",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Put",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY5MjIyLCJpYXQiOjE3NzgyNjU2MjIsImp0aSI6IjI3ZWJjYjM0ZmU0MTQxODFhZWNmMWI4OWMyN2RmZTIyIiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.cuEdwp8OJGxkgAU-g3EQMlsXIs8wF-Zx6g-QTOxFmjI",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/1/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "1",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MjY5MjIyLCJpYXQiOjE3NzgyNjU2MjIsImp0aSI6IjI3ZWJjYjM0ZmU0MTQxODFhZWNmMWI4OWMyN2RmZTIyIiwidXNlcl9pZCI6IjIiLCJ1c2VyX3R5cGUiOiJFTVBSRVNBIiwiZW1haWwiOiJzaGl6dUBlbWFpbC5jb20iLCJpc192ZXJpZmllZCI6ZmFsc2V9.cuEdwp8OJGxkgAU-g3EQMlsXIs8wF-Zx6g-QTOxFmjI",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/products/1/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "products",
+                    "1",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "AdminProductDebugViewSet",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MzE2NzYwLCJpYXQiOjE3NzgyODA3NjAsImp0aSI6Ijk2ZDM4ZmRhOTRkMjQ1ZTM5Yzg3YTM2MGVhZGQ2YTRmIiwidXNlcl9pZCI6IjEiLCJ1c2VyX3R5cGUiOiJBRE1JTiIsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaXNfdmVyaWZpZWQiOmZhbHNlfQ.EGpQkd6DuiYdeFG_Knx5YULahOXcGE6WOxUq2ISnmjE",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/admin_api/users/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "admin_api",
+                "users",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
