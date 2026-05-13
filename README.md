@@ -21,10 +21,23 @@ RESETDATABASE   =true
 
 ```dotenv
 
+DEBUG = True
+
+
+# =========================================================
+# DJANGO
+# =========================================================
+
 DEBUG=True
 
 SECRET_KEY=django-insecure-7xK9vQ!Shizu_4mTz#pL2r@8NwE6yU$1cHfR3bA
+
 ALLOWED_HOSTS=127.0.0.1,localhost,0.0.0.0
+
+
+# =========================================================
+# DATABASE
+# =========================================================
 
 DB_NAME=crm_db
 DB_USER=crm_user
@@ -33,14 +46,55 @@ DB_HOST=db
 DB_PORT=5432
 
 
+# =========================================================
+# SUPERUSER
+# =========================================================
+
 SUPERUSER=true
+
 DJANGO_SUPERUSER_USERNAME=admin
 DJANGO_SUPERUSER_EMAIL=admin@email.com
 DJANGO_SUPERUSER_PASSWORD=admin
 
-MIGRATION=true
-RESETDATABASE=true
 
+# =========================================================
+# MIGRATIONS
+# =========================================================
+
+MIGRATION=true
+RESETDATABASE=false
+
+
+# =========================================================
+# JWT
+# =========================================================
+
+JWT_ACCESS_MINUTES=600
+JWT_REFRESH_DAYS=7
+
+
+# =========================================================
+# RATE LIMIT
+# =========================================================
+
+# usuários sem login
+THROTTLE_ANON=1000/minute
+
+# usuários autenticados
+THROTTLE_USER=10000/minute
+
+# login/auth
+THROTTLE_LOGIN=1000/minute
+
+# burst extra opcional
+THROTTLE_BURST=100000/day
+
+# =========================================================
+# MEDIA
+# =========================================================
+
+MEDIA_URL=/media/
+MEDIA_ROOT=/app/media
 ```
 
 ## 🔹 Inicialização do Projeto
