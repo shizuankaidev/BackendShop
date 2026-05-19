@@ -19,6 +19,7 @@ from .serializers import (
     CustomTokenObtainPairSerializer,
     ProfileSerializer,
     UserSerializer,
+    MeSerializer,
 )
 
 User = get_user_model()
@@ -47,6 +48,19 @@ class LoginView(TokenObtainPairView):
         permissions.AllowAny
     ]
 
+
+# =========================================================
+# ME
+# =========================================================
+
+class MeView(generics.RetrieveAPIView):
+
+    serializer_class = MeSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
 
 # =========================================================
 # REFRESH JWT

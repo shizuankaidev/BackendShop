@@ -6,6 +6,20 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 User = get_user_model()
 
+class MeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = (
+            "id",
+            "email",
+            "username",
+            "user_type",
+            "is_active",
+            "is_verified",
+        )
+
+
 # -----------------------------
 # JWT personalizado
 # -----------------------------
