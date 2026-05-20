@@ -2,7 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.exceptions import ValidationError
 
-
 class User(AbstractUser):
 
     class UserType(models.TextChoices):
@@ -27,6 +26,15 @@ class User(AbstractUser):
         related_name="created_users"
     )
 
+    # =========================================
+    # COMPANY (ID SIMPLES)
+    # =========================================
+    company = models.PositiveBigIntegerField(
+        null=True,
+        blank=True,
+        db_index=True
+    )
+
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
 
@@ -34,6 +42,12 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
 
     def clean(self):
+
+        super().clean()
+
+        if self.user_type == self.UserType.ADMIN:
+            self.company = None
+
         if not self.created_by:
             return
 
@@ -43,18 +57,22 @@ class User(AbstractUser):
             return
 
         if creator.user_type == self.UserType.EMPRESA:
-            if self.user_type not in [self.UserType.AFILIADO, self.UserType.CLIENTE]:
+            if self.user_type not in [
+                self.UserType.AFILIADO,
+                self.UserType.CLIENTE
+            ]:
                 raise ValidationError("Empresa só pode criar Afiliado ou Cliente.")
+            return
 
-        elif creator.user_type == self.UserType.AFILIADO:
+        if creator.user_type == self.UserType.AFILIADO:
             if self.user_type != self.UserType.CLIENTE:
                 raise ValidationError("Afiliado só pode criar Cliente.")
+            return
 
-        else:
-            raise ValidationError("Este tipo de usuário não pode criar outros.")
+        raise ValidationError("Este tipo de usuário não pode criar outros.")
 
     def save(self, *args, **kwargs):
-        self.full_clean()  # 🔥 força validação sempre
+        self.full_clean()
         super().save(*args, **kwargs)
 
     def __str__(self):

@@ -35,13 +35,16 @@ class CompanyAdminViewSet(ModelViewSet):
 
         company = self.get_object()
 
-        user_id = request.data.get("user_id")
+        user_id = request.data.get(
+            "user_id"
+        )
 
         if not user_id:
 
             return Response(
                 {
-                    "detail": "user_id é obrigatório."
+                    "detail":
+                    "user_id é obrigatório."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -52,36 +55,55 @@ class CompanyAdminViewSet(ModelViewSet):
         )
 
         # =================================================
-        # VALIDA USER TYPE
+        # USER TYPE
         # =================================================
 
         if user.user_type != User.UserType.EMPRESA:
 
             return Response(
                 {
-                    "detail": "Apenas usuários EMPRESA podem ser owner."
+                    "detail":
+                    "Apenas usuários EMPRESA podem ser owner."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
 
         # =================================================
-        # JÁ POSSUI OWNER
+        # ALREADY HAS COMPANY
         # =================================================
 
         if (
-            getattr(user, "owned_company", None)
-            and user.owned_company != company
+            user.company
+            and user.company != company.id
         ):
 
             return Response(
                 {
-                    "detail": "Usuário já possui outra empresa."
+                    "detail":
+                    "Usuário já possui outra empresa."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
 
         # =================================================
-        # DEFINE OWNER
+        # REMOVE OLD OWNER
+        # =================================================
+
+        if (
+            company.owner
+            and company.owner != user
+        ):
+
+            old_owner = company.owner
+
+            old_owner.company = None
+
+            old_owner.save(
+                update_fields=["company"]
+            )
+
+        # =================================================
+        # SET OWNER
         # =================================================
 
         company.owner = user
@@ -90,9 +112,20 @@ class CompanyAdminViewSet(ModelViewSet):
             update_fields=["owner"]
         )
 
+        # =================================================
+        # UPDATE USER COMPANY
+        # =================================================
+
+        user.company = company.id
+
+        user.save(
+            update_fields=["company"]
+        )
+
         return Response(
             {
-                "detail": "Owner definido com sucesso."
+                "detail":
+                "Owner definido com sucesso."
             },
             status=status.HTTP_200_OK
         )
@@ -109,10 +142,27 @@ class CompanyAdminViewSet(ModelViewSet):
 
             return Response(
                 {
-                    "detail": "Empresa não possui owner."
+                    "detail":
+                    "Empresa não possui owner."
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+        owner = company.owner
+
+        # =================================================
+        # REMOVE COMPANY FROM USER
+        # =================================================
+
+        owner.company = None
+
+        owner.save(
+            update_fields=["company"]
+        )
+
+        # =================================================
+        # REMOVE OWNER
+        # =================================================
 
         company.owner = None
 
@@ -122,7 +172,8 @@ class CompanyAdminViewSet(ModelViewSet):
 
         return Response(
             {
-                "detail": "Owner removido com sucesso."
+                "detail":
+                "Owner removido com sucesso."
             },
             status=status.HTTP_200_OK
         )

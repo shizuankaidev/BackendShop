@@ -1,18 +1,28 @@
 import os
 from django.utils.text import slugify
-from django.db.models import Q, F
 
 from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
-
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from authentication.permissions import IsEmpresa
 
 from .models import Product, ProductImage, Category
 from .serializers import ProductSerializer, CategorySerializer
+
+
+# =========================================================
+# SAFE COMPANY HELPER
+# =========================================================
+
+def get_company(user):
+    """
+    Retorna a company do user de forma segura.
+    Evita crash quando não existe owned_company.
+    """
+    return getattr(user, "owned_company", None)
 
 
 # =========================================================
@@ -26,18 +36,32 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsEmpresa]
 
     def get_queryset(self):
+
+        company = get_company(self.request.user)
+
+        if not company:
+            return Category.objects.none()
+
         return Category.objects.filter(
-            company=self.request.user.owned_company,
+            company=company,
             is_active=True
         ).order_by("name")
 
     def perform_create(self, serializer):
-        serializer.save(company=self.request.user.owned_company)
+
+        company = get_company(self.request.user)
+
+        if not company:
+            raise Exception("Usuário não possui empresa vinculada.")
+
+        serializer.save(company=company)
 
     def destroy(self, request, *args, **kwargs):
+
         obj = self.get_object()
         obj.is_active = False
         obj.save()
+
         return Response({"detail": "Categoria removida."})
 
 
@@ -59,8 +83,13 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
 
+        company = get_company(self.request.user)
+
+        if not company:
+            return Product.objects.none()
+
         return Product.objects.filter(
-            company=self.request.user.owned_company,
+            company=company,
             is_active=True
         ).select_related(
             "category",
@@ -71,41 +100,37 @@ class ProductViewSet(viewsets.ModelViewSet):
         ).order_by("-id")
 
     # ----------------------------
-    # CREATE (MVP INTELIGENTE)
+    # CREATE
     # ----------------------------
 
     def create(self, request, *args, **kwargs):
 
+        company = get_company(request.user)
+
+        if not company:
+            return Response(
+                {"detail": "Usuário sem empresa vinculada."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-
-        company = request.user.owned_company
 
         product = serializer.save(
             company=company,
             created_by=request.user
         )
 
-        # =====================================================
-        # AUTO ID PREFIX NO NOME (MVP FEATURE)
-        # =====================================================
-
+        # auto nome MVP
         product.name = f"#{product.id:05d} {product.name}"
-
         product.slug = slugify(product.name)
-
         product.save()
 
-        # =====================================================
-        # IMAGENS
-        # =====================================================
-
+        # imagens
         images = request.FILES.getlist("images")
 
         if images:
-
             for index, image in enumerate(images):
-
                 ProductImage.objects.create(
                     product=product,
                     image=image,
@@ -121,7 +146,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         )
 
     # ----------------------------
-    # UPDATE (MVP CLEAN)
+    # UPDATE
     # ----------------------------
 
     def update(self, request, *args, **kwargs):
@@ -142,11 +167,9 @@ class ProductViewSet(viewsets.ModelViewSet):
         images = request.FILES.getlist("images")
 
         if images:
-
             ProductImage.objects.filter(product=product).delete()
 
             for index, image in enumerate(images):
-
                 ProductImage.objects.create(
                     product=product,
                     image=image,
@@ -162,7 +185,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         )
 
     # ----------------------------
-    # SOFT DELETE
+    # DELETE (SOFT)
     # ----------------------------
 
     def destroy(self, request, *args, **kwargs):
